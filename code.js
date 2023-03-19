@@ -1,41 +1,72 @@
+game();
 
-function playRound(playerChoice, ComputerChoice) {
-    if (playerChoice.toLowerCase() === 'rock') {
+// This is the code for the Rock, Paper, Scissors game.
+function game(){
+    let PlayerScore = 0;
+    let ComputerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+        console.log("You chose " + playerSelection + "!");
+        let computerSelection = getComputerChoice();
+        result = playRound(playerSelection, computerSelection);
+        console.log(result[1]);
+        if (result[0] === 1) {
+            PlayerScore++;
+        }
+        else if (result[0] === -1) {
+            ComputerScore++;
+        }
+        console.log("Here are the current scores - " + "You: " + PlayerScore + " Computer: " + ComputerScore);
+    }
+    if (PlayerScore > ComputerScore) {
+        console.log("Congrats! You win the game!");
+    }
+    else if(PlayerScore < ComputerScore) {
+        console.log("That was a terrible performance, you lose the game.");
+    }
+    else{
+        console.log("No one wins! Tie game.");
+    }
+}
+
+// The function that plays a round of Rock, Paper, Scissors
+function playRound(playerChoice, ComputerChoice) { 
+    if (playerChoice === 'rock') {
         if (ComputerChoice === 'rock') {
-            return 'Tie!';
+            return [0,'Tie!'];
         }
         else if (ComputerChoice === 'paper'){
-            return 'You lose! Paper beats rock.';
+            return [-1,'You lose this round! Paper beats rock.'];
         }
         else {
-            return 'You win! Rock beats scissors.';
+            return [1, 'You win this round! Rock beats scissors.'];
         }
     } 
-    if (playerChoice.toLowerCase() === 'paper') {
+    if (playerChoice === 'paper') {
         if (ComputerChoice === 'rock') {
-            return 'You win! Paper beats rock.';
+            return [1, 'You win this round! Paper beats rock.'];
         }
         else if (ComputerChoice === 'paper'){
-            return 'Tie!';
+            return [0,'Tie!'];
         }
         else {
-            return 'You lose! Scissors beats paper.';
+            return [-1, 'You lose this round! Scissors beats paper.'];
         }
     } 
-    if (playerChoice.toLowerCase() === 'scissors') {
+    if (playerChoice === 'scissors') {
         if (ComputerChoice === 'rock') {
-            return 'You lose! Rock beats scissors.';
+            return [-1, 'You lose this round! Rock beats scissors.'];
         }
         else if (ComputerChoice === 'paper'){
-            return 'You win! Scissors beats paper.';
+            return [1, 'You win this round! Scissors beats paper.'];
         }
         else {
-            return 'Tie!';
+            return [0,'Tie!'];
         }
     } 
 }
 
-
+// This function returns a random choice for the computer
 function getComputerChoice() {
     let num = Math.floor(Math.random() * 3); // returns a random integer from 0 to 2
 
