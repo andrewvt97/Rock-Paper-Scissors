@@ -1,4 +1,33 @@
+game();
 
+// This is the code for the Rock, Paper, Scissors game.
+function game(){
+    let PlayerScore = 0;
+    let ComputerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        let playerSelection = prompt("Rock, Paper, or Scissors?").toLowerCase();
+        console.log("You chose " + playerSelection + "!");
+        let computerSelection = getComputerChoice();
+        result = playRound(playerSelection, computerSelection);
+        console.log(result[1]);
+        if (result[0] === 1) {
+            PlayerScore++;
+        }
+        else if (result[0] === -1) {
+            ComputerScore++;
+        }
+        console.log("Here are the current scores - " + "You: " + PlayerScore + " Computer: " + ComputerScore);
+    }
+    if (PlayerScore > ComputerScore) {
+        console.log("Congrats! You win the game!");
+    }
+    else if(PlayerScore < ComputerScore) {
+        console.log("That was a terrible performance, you lose the game.");
+    }
+    else{
+        console.log("No one wins! Tie game.");
+    }
+}
 
 // The function that plays a round of Rock, Paper, Scissors
 function playRound(playerChoice, ComputerChoice) { 
