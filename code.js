@@ -3,14 +3,25 @@ const buttons = document.querySelectorAll('.option');
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         // Get the player's choice
+        let playerScore = 0;
+        let computerScore = 0;
         const playerChoice = e.target.id;
         // Get the computer's choice
         const computerChoice = getComputerChoice();
         // Play a round of Rock, Paper, Scissors
         const result = playRound(playerChoice, computerChoice);
+        const container = document.querySelector('.result');
+        const roundResult = document.createElement('p');
+        roundResult.textContent = result[1];
+        container.appendChild(roundResult);
+        const currentScore = document.createElement('p');
+        currentScore.textContent = `Your score: ${playerScore} Computer score: ${computerScore}`;
+        container.appendChild(currentScore);
       
     });
 });
+
+
 
 // This is the code for the Rock, Paper, Scissors game.
 
