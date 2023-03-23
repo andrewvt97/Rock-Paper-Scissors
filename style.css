@@ -1,0 +1,53 @@
+body {
+    text-align: center;
+    background-image: url("images/background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
+.intro{
+    font-size: 30px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: rgb(44, 151, 172);
+}
+
+.rules {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #624f74;
+    margin: 25px 300px;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.option {
+    height: 150px;
+    width: 150px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 30px;
+    border: 7px solid #2c97ac
+
+}
+
+#rock {
+    background-image: url("images/rock.jpg");
+
+    
+}
+
+#paper {
+    background-image: url("images/scroll.jpg");
+
+}
+
+#scissors {
+    background-image: url("images/scissors.jpg");
+}
