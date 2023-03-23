@@ -4,9 +4,23 @@ const container = document.querySelector('.result');
 let roundResult; // declare before so function doesn't create a new element
 let currentScore; // declare before so function doesn't create a new element
 let playerScore = 0, computerScore = 0;
+let condition = true;
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         // Get the player's choice
+        if (playerScore === 5 || computerScore === 5) {
+            let gameResult = document.createElement('p');
+            if (condition){
+                if (playerScore === 5) {
+                    gameResult.textContent = "You win! That was amazing.";
+                } else {
+                    gameResult.textContent = "You lose! That was terrible.";
+                }
+                container.appendChild(gameResult);
+            }
+            condition = false;
+            return
+        }
         const playerChoice = e.target.id;
         // Play a round of Rock, Paper, Scissors
         const result = playRound(playerChoice);
