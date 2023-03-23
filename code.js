@@ -1,27 +1,54 @@
 const buttons = document.querySelectorAll('.option');
+const container = document.querySelector('.result');
 
+let roundResult; // declare before so function doesn't create a new element
+let currentScore; // declare before so function doesn't create a new element
+let playerScore = 0, computerScore = 0;
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         // Get the player's choice
         const playerChoice = e.target.id;
-        // Get the computer's choice
-        const computerChoice = getComputerChoice();
         // Play a round of Rock, Paper, Scissors
-        const result = playRound(playerChoice, computerChoice);
-      
+        const result = playRound(playerChoice);
+        // Display the result
+        if(!roundResult){
+        roundResult = document.createElement('p');
+        roundResult.textContent = result[1];
+        container.appendChild(roundResult);
+        } else {
+            roundResult.textContent = result[1];
+        }
+        if (result[0] === 1) {
+            playerScore++;
+        }
+        else if (result[0] === -1) {
+            computerScore++;
+        }
+        // Display the current score
+        if(!currentScore){
+            currentScore = document.createElement('p');
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+            container.appendChild(currentScore);
+        } else {
+            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+        }
+
+
     });
 });
+
 
 // This is the code for the Rock, Paper, Scissors game.
 
 
 // The function that plays a round of Rock, Paper, Scissors
-function playRound(playerChoice, ComputerChoice) { 
+function playRound(playerChoice) { 
+    computerChoice = getComputerChoice();
     if (playerChoice === 'rock') {
-        if (ComputerChoice === 'rock') {
+        if (computerChoice === 'rock') {
             return [0,'Tie!'];
         }
-        else if (ComputerChoice === 'paper'){
+        else if (computerChoice === 'paper'){
             return [-1,'You lose this round! Paper beats rock.'];
         }
         else {
@@ -29,10 +56,10 @@ function playRound(playerChoice, ComputerChoice) {
         }
     } 
     if (playerChoice === 'paper') {
-        if (ComputerChoice === 'rock') {
+        if (computerChoice === 'rock') {
             return [1, 'You win this round! Paper beats rock.'];
         }
-        else if (ComputerChoice === 'paper'){
+        else if (computerChoice === 'paper'){
             return [0,'Tie!'];
         }
         else {
@@ -40,10 +67,10 @@ function playRound(playerChoice, ComputerChoice) {
         }
     } 
     if (playerChoice === 'scissors') {
-        if (ComputerChoice === 'rock') {
+        if (computerChoice === 'rock') {
             return [-1, 'You lose this round! Rock beats scissors.'];
         }
-        else if (ComputerChoice === 'paper'){
+        else if (computerChoice === 'paper'){
             return [1, 'You win this round! Scissors beats paper.'];
         }
         else {
