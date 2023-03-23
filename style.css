@@ -4,6 +4,9 @@ body {
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+  
 }
 
 .intro{
@@ -18,24 +21,34 @@ body {
     font-weight: bold;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: #624f74;
-    margin: 25px 300px;
+    margin: 25px 100px;
 }
-
-.game {
+.game-buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    margin:auto;
 }
 
 .option {
+    margin: 5px 10px;
+}
+
+.label {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+}
+
+.picture {
     height: 150px;
     width: 150px;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 30px;
     border: 7px solid #2c97ac
-
 }
+
 
 #rock {
     background-image: url("images/rock.jpg");
@@ -50,4 +63,10 @@ body {
 
 #scissors {
     background-image: url("images/scissors.jpg");
+}
+
+.result {
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
 }

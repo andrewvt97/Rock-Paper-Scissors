@@ -8,19 +8,32 @@
     <link rel = "stylesheet" href = "./style.css">
 </head>
 <body>
+  
     <p class = "intro"> Welcome to Rock Paper Scissors! </p>
     <p class = "rules"> Welcome to a classic game of rock paper scissors. You will be facing off against a computer with the ultimate 
-        rock paper scissors skills. Remember, if you lose, you will be forced to see a cat playing the piano. The first to
+        rock paper scissors skills. Click on any of the icons to start. The first to
         win 5 rounds will become the ultimate rock paper scissors champion. May the odds be ever in your favor.
     </p>
-    <div class = "game">
-        <button class = "option" id = "rock"> </button>
-        <button class = "option" id = "paper"> </button>
-        <button class = "option" id = "scissors"> </button>
+
+
+    <div class = "game-buttons">
+        <div class = "option" >
+            <button class = "picture" id = "rock"> </button>
+            <p class = "label"> Rock </p>
+        </div>
+        <div class = "option">
+            <button class = "picture" id = "paper"> </button>
+            <p class = "label"> Paper </p>
+        </div>
+        <div class = "option">
+            <button class = "picture" id = "scissors"> </button>
+            <p class = "label"> Scissors </p>
+        </div>
     </div>
+
+
     <div class = "result"></div>
-        <!-- <p class = "round-result"></p>
-        <p class = "score"></p> -->
+
    
     <script src = "./code.js"></script>
 </body>

@@ -4,21 +4,11 @@ const container = document.querySelector('.result');
 let roundResult; // declare before so function doesn't create a new element
 let currentScore; // declare before so function doesn't create a new element
 let playerScore = 0, computerScore = 0;
-let condition = true;
+
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
         // Get the player's choice
         if (playerScore === 5 || computerScore === 5) {
-            let gameResult = document.createElement('p');
-            if (condition){
-                if (playerScore === 5) {
-                    gameResult.textContent = "You win! That was amazing.";
-                } else {
-                    gameResult.textContent = "You lose! That was terrible.";
-                }
-                container.appendChild(gameResult);
-            }
-            condition = false;
             return
         }
         const playerChoice = e.target.id;
@@ -41,15 +31,34 @@ buttons.forEach((button) => {
         // Display the current score
         if(!currentScore){
             currentScore = document.createElement('p');
-            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+            currentScore.textContent = `Current Score: Player: ${playerScore} Computer: ${computerScore}`;
             container.appendChild(currentScore);
         } else {
-            currentScore.textContent = `Player: ${playerScore} Computer: ${computerScore}`;
+            currentScore.textContent = `Current Score: Player: ${playerScore} Computer: ${computerScore}`;
         }
 
-
+        if (playerScore === 5 || computerScore === 5) {
+            let outputContainer = document.createElement('div');
+            outputContainer.setAttribute('style', 'display: flex; gap: 20px; align-items: center; justify-content: center;')
+            let gameResult = document.createElement('p');
+                if (playerScore === 5) {
+                    gameResult.textContent = "You win! That was amazing.";
+                } else {
+                    gameResult.textContent = "You lose! That was terrible.";
+                }
+                gameResult.setAttribute('style', 'font-size: 2em; font-weight: bold; color: #2c97ac')
+                outputContainer.appendChild(gameResult);
+            
+            container.appendChild(outputContainer);
+            eventListener(newGame);
+    
+        }
     });
 });
+
+
+
+
 
 
 // This is the code for the Rock, Paper, Scissors game.
