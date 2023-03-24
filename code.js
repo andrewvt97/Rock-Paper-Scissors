@@ -28,6 +28,7 @@ buttons.forEach((button) => {
         else if (result[0] === -1) {
             computerScore++;
         }
+        
         // Display the current score
         if(!currentScore){
             currentScore = document.createElement('p');
@@ -48,13 +49,33 @@ buttons.forEach((button) => {
                 }
                 gameResult.setAttribute('style', 'font-size: 2em; font-weight: bold; color: #2c97ac')
                 outputContainer.appendChild(gameResult);
-            
+
+                let newGame = document.createElement('button');
+                newGame.textContent = 'New Game';
+                newGame.setAttribute('style', 'font-size: 1.5em; font-weight: bold; color: white; background-color: #2c97ac;  border-radius: 5px; padding: 10px 20px; cursor: pointer;')
+                outputContainer.appendChild(newGame);
+
             container.appendChild(outputContainer);
             eventListener(newGame);
     
         }
     });
 });
+
+
+function eventListener(newGame) {
+    newGame.addEventListener('click', () => {
+        playerScore = 0;
+        computerScore = 0;
+        roundResult = undefined;
+        currentScore = undefined;
+        const count = container.childElementCount;
+        for (let i = 0; i < count; i++) {
+            container.removeChild(container.lastElementChild);
+        }
+    })
+}
+
 
 
 
@@ -66,7 +87,7 @@ buttons.forEach((button) => {
 
 // The function that plays a round of Rock, Paper, Scissors
 function playRound(playerChoice) { 
-    computerChoice = getComputerChoice();
+    const computerChoice = getComputerChoice();
     if (playerChoice === 'rock') {
         if (computerChoice === 'rock') {
             return [0,'Tie!'];
