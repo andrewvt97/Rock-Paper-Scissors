@@ -1,8 +1,9 @@
 const buttons = document.querySelectorAll('.option');
 const container = document.querySelector('.result');
+let roundResult = document.querySelector(".message");
+let currentScore = document.querySelector(".score");
+let outputContainer = document.createElement('div');
 
-let roundResult; // declare before so function doesn't create a new element
-let currentScore; // declare before so function doesn't create a new element
 let playerScore = 0, computerScore = 0;
 
 buttons.forEach((button) => {
@@ -16,9 +17,7 @@ buttons.forEach((button) => {
         const result = playRound(playerChoice);
         // Display the result
         if(!roundResult){
-        roundResult = document.createElement('p');
         roundResult.textContent = result[1];
-        container.appendChild(roundResult);
         } else {
             roundResult.textContent = result[1];
         }
@@ -30,16 +29,11 @@ buttons.forEach((button) => {
         }
         
         // Display the current score
-        if(!currentScore){
-            currentScore = document.createElement('p');
-            currentScore.textContent = `Current Score: Player: ${playerScore} Computer: ${computerScore}`;
-            container.appendChild(currentScore);
-        } else {
-            currentScore.textContent = `Current Score: Player: ${playerScore} Computer: ${computerScore}`;
-        }
+        
+        currentScore.textContent = `Current Score: Player: ${playerScore} Computer: ${computerScore}`;
+        
 
         if (playerScore === 5 || computerScore === 5) {
-            let outputContainer = document.createElement('div');
             outputContainer.setAttribute('style', 'display: flex; gap: 20px; align-items: center; justify-content: center;')
             let gameResult = document.createElement('p');
                 if (playerScore === 5) {
@@ -47,12 +41,12 @@ buttons.forEach((button) => {
                 } else {
                     gameResult.textContent = "You lose! That was terrible.";
                 }
-                gameResult.setAttribute('style', 'font-size: 2em; font-weight: bold; color: #2c97ac')
+                gameResult.classList.add('game-message');
                 outputContainer.appendChild(gameResult);
 
                 let newGame = document.createElement('button');
                 newGame.textContent = 'New Game';
-                newGame.setAttribute('style', 'font-size: 1.5em; font-weight: bold; color: white; background-color: #2c97ac;  border-radius: 5px; padding: 10px 20px; cursor: pointer;')
+                newGame.classList.add('new-game');
                 outputContainer.appendChild(newGame);
 
             container.appendChild(outputContainer);
@@ -67,11 +61,11 @@ function eventListener(newGame) {
     newGame.addEventListener('click', () => {
         playerScore = 0;
         computerScore = 0;
-        roundResult = undefined;
-        currentScore = undefined;
-        const count = container.childElementCount;
+        roundResult.textContent = "Click on any of the icons to start."; // should mostly use null instead of undefined
+        currentScore.textContent = "Current Score: Player: 0 Computer: 0";
+        const count = outputContainer.childElementCount;
         for (let i = 0; i < count; i++) {
-            container.removeChild(container.lastElementChild);
+            outputContainer.removeChild(outputContainer.lastElementChild);
         }
     })
 }
@@ -90,7 +84,7 @@ function playRound(playerChoice) {
     const computerChoice = getComputerChoice();
     if (playerChoice === 'rock') {
         if (computerChoice === 'rock') {
-            return [0,'Tie!'];
+            return [0,'Tie! You both picked rock.'];
         }
         else if (computerChoice === 'paper'){
             return [-1,'You lose this round! Paper beats rock.'];
@@ -104,7 +98,7 @@ function playRound(playerChoice) {
             return [1, 'You win this round! Paper beats rock.'];
         }
         else if (computerChoice === 'paper'){
-            return [0,'Tie!'];
+            return [0,'Tie! You both picked paper.'];
         }
         else {
             return [-1, 'You lose this round! Scissors beats paper.'];
@@ -118,7 +112,7 @@ function playRound(playerChoice) {
             return [1, 'You win this round! Scissors beats paper.'];
         }
         else {
-            return [0,'Tie!'];
+            return [0,'Tie! You both picked scissors.'];
         }
     } 
 }
